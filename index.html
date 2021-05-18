@@ -20,27 +20,34 @@
             $("#formulario").submit(function(){
                 var mensaje = "";
                 if($("#Nombre").val().trim().length == 0){
-                    mensaje = "Debe completar el campo obligatorio de nombre";
+                    mensaje = "Debe completar el campo obligatorio de nombre.";
                 }
                 if($("#Correo").val().trim().length == 0){
-                    mensaje = "Debe completar el campo obligatorio de correo";
+                    mensaje = "Debe completar el campo obligatorio de correo.";
                 }
                 
                 if($("#Edad").val()<18){
-                    mensaje = "Usted debe ser mayor de edad";
+                    mensaje = "Usted debe ser mayor de edad.";
                 }
 
                 if($("#numero").val().trim().length==0){
-                    mensaje = "Debe ingresar Su número de celular";
+                    mensaje = "Debe ingresar Su número de celular.";
                 }
 
                 if($("#numero").val().trim().length>9){
-                    mensaje = "Verifique que su número esté bien";
+                    mensaje = "Verifique que su número esté correcto.";
                 }
                 
                 if($("#numero").val().trim().length<9){
-                    mensaje = "Verifique que su número esté bien";
+                    mensaje = "Verifique que su número esté correcto.";
                 }
+
+                if($("#comentario").val().trim().length<50){
+                    mensaje = "El texto escrito es muy corto. ";
+                }
+
+
+
 
 
                 if(mensaje != ""){
@@ -74,22 +81,22 @@
                 
                 <form id="formulario" name="formulario" action="recibe.php" method="GET" enctype="multipart/form-data" >
                     <div class="form-group">
-                        <label class= "mediana amarillo" for="Edad">Ingresa tu edad</label>
+                        <label class= "mediana amarillo" for="Edad">Ingresa tu edad*</label>
                         <input name="Edad" class="form-control" type="number"  id="Edad" placeholder="36">
                     </div>
             
                     <div class="form-group">
-                        <label class= "mediana amarillo" for="Correo">Ingresa tu correo electrónico </label>
+                        <label class= "mediana amarillo" for="Correo">Ingresa tu correo electrónico *</label>
                         <input name="Correo" class="form-control" type="email" id="Correo" placeholder="ElBicho@golazo.com">  
                     </div>
                
                     <div class="form-group">
-                        <label class= "mediana amarillo" for="Nombre">Ingresa tu Nombre Completo</label>
+                        <label class= "mediana amarillo" for="Nombre">Ingresa tu Nombre Completo *</label>
                         <input name="Nombre" class="form-control" type="text" id="Nombre" placeholder="Cristiano Ronaldo">
                     </div>
                
                     <div class="form-group">
-                        <label class= "mediana amarillo" for="numero">Ingresa tu número de celular sin el prefijo</label>
+                        <label class= "mediana amarillo" for="numero">Ingresa tu número de celular sin el prefijo *</label>
                         <input name="numero" class="form-control" type="text" id="numero" placeholder="971209289">
                     </div>
                 
@@ -135,11 +142,11 @@
                         </select>
                     </div>
 
-                    <label class= "mediana amarillo" for="comentario">Escribe un pequeño texto sobre ¿Por qué quieres esta máscota?</label>
+                    <label class= "mediana amarillo" for="comentario">Escribe un pequeño texto sobre ¿Por qué quieres esta máscota? *</label>
                     <textarea cols="20" id="comentario" rows="5" placeholder="Madre mia el Bicho"></textarea>
                     <br>
-                    <input type="submit" class="btn btn-danger" id="enviar" name="enviar" value="enviar" />
-                    <input type="reset" class="btn btn-primary" id="reset" name="reset" value="Limpiar" />
+                    <input type="submit" class="btn btn-primary" id="enviar" name="enviar" value="enviar" />
+                    <input type="reset" class="btn btn-danger" id="reset" name="reset" value="Limpiar" />
                     <div id="error" class="alert alert-danger" role="alert"></div>
                     
                 </form>
