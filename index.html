@@ -13,6 +13,51 @@
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
    
     <script type="text/javascript">
+         $(document).ready(function(){
+            
+            $("#error").hide();
+
+            $("#formulario").submit(function(){
+                var mensaje = "";
+                if($("#Nombre").val().trim().length == 0){
+                    mensaje = "Debe completar el campo obligatorio de nombre";
+                }
+                if($("#Correo").val().trim().length == 0){
+                    mensaje = "Debe completar el campo obligatorio de correo";
+                }
+                
+                if($("#Edad").val()<18){
+                    mensaje = "Usted debe ser mayor de edad";
+                }
+
+                if($("#numero").val().trim().length==0){
+                    mensaje = "Debe ingresar Su número de celular";
+                }
+
+                if($("#numero").val().trim().length>9){
+                    mensaje = "Verifique que su número esté bien";
+                }
+                
+                if($("#numero").val().trim().length<9){
+                    mensaje = "Verifique que su número esté bien";
+                }
+
+
+                if(mensaje != ""){
+                    $("#error").html(mensaje);
+                    $("#error").show();
+                    event.preventDefault();
+                }
+            });
+
+            $("#reset").click(function(){
+                $("#error").hide();
+                var mensaje = "";
+            });
+
+
+
+        });
     
     
     
@@ -26,14 +71,15 @@
     <section class="form-register">
         <div class="container">
             <div class="row">
-                <form>
+                
+                <form id="formulario" name="formulario" action="recibe.php" method="GET" enctype="multipart/form-data" >
                     <div class="form-group">
                         <label class= "mediana amarillo" for="Edad">Ingresa tu edad</label>
                         <input name="Edad" class="form-control" type="number"  id="Edad" placeholder="36">
                     </div>
             
                     <div class="form-group">
-                        <label class= "mediana amarillo" for="Correo">Ingresa tu correo electrónico *</label>
+                        <label class= "mediana amarillo" for="Correo">Ingresa tu correo electrónico </label>
                         <input name="Correo" class="form-control" type="email" id="Correo" placeholder="ElBicho@golazo.com">  
                     </div>
                
@@ -43,12 +89,12 @@
                     </div>
                
                     <div class="form-group">
-                        <label class= "mediana amarillo" for="numero">Ingresa tu número de celular</label>
-                        <input name="numero" class="form-control" type="text" id="numero" placeholder="+569 71209289">
+                        <label class= "mediana amarillo" for="numero">Ingresa tu número de celular sin el prefijo</label>
+                        <input name="numero" class="form-control" type="text" id="numero" placeholder="971209289">
                     </div>
                 
                     <div class="form-group">
-                        <label class= "mediana amarillo" for="direccion">Ingresa tu direccion de domicilio</label>
+                        <label class= "mediana amarillo" for="direccion">Ingresa tu direccion</label>
                         <input name="direccion" class="form-control" type="text" id="direccion" placeholder="24/7 Juventus Stadium">
                     </div>
                
@@ -89,12 +135,12 @@
                         </select>
                     </div>
 
-                    <label class= "mediana amarillo" for="comentario">Escribe un pequeño texto de porque quieres esta máscota</label>
+                    <label class= "mediana amarillo" for="comentario">Escribe un pequeño texto sobre ¿Por qué quieres esta máscota?</label>
                     <textarea cols="20" id="comentario" rows="5" placeholder="Madre mia el Bicho"></textarea>
                     <br>
                     <input type="submit" class="btn btn-danger" id="enviar" name="enviar" value="enviar" />
                     <input type="reset" class="btn btn-primary" id="reset" name="reset" value="Limpiar" />
-
+                    <div id="error" class="alert alert-danger" role="alert"></div>
                     
                 </form>
             </div>
